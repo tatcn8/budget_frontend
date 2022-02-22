@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button, Col } from 'reactstrap'
+import axios from "axios";
 
 const Budget_Form = () =>{
+    const initialState = ('')
+    const [ itemState, setItemState ] = useState(initialState)
+
+  
+    const handleChange = (e) =>{
+        setItemState({...itemState, [e.target.id]: e.target.value})
+        console.log(typeof(itemState))
+    }
+    const handleSubmit = () =>{
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/budgets',
+            data: itemState
+        })
+        window.location.reload()
+    }
+
     return(
     <>  
         <Col xs = '4'>
         <Form inline>
+        <FormGroup className="mb-2 me-sm-2 mb-sm-0">
+          <Label
+             className="me-sm-2"
+            >
+            Month
+          </Label>
+          <Input
+            id="Month"
+            type="month"
+            placeholder="Enter Desired Month..."
+            onChange={handleChange}
+          />
+          </FormGroup>
           <FormGroup className="mb-2 me-sm-2 mb-sm-0">
           <Label
              className="me-sm-2"
-             for="exampleEmail"
             >
               Housing
           </Label>
           <Input
-            id="exampleEmail"
-            name="email"
+            id="Housing"
             placeholder="Mortgage/Rent..."
-            type="email"
+            type="Housing"
+            onChange={handleChange}
           />
           </FormGroup>
          <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -28,10 +58,11 @@ const Budget_Form = () =>{
           Groceries
         </Label>
         <Input
-          id="examplePassword"
+          id="Groceries"
           name="password"
           placeholder="Groceries..."
-          type="password"
+          type="Groceries"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -42,10 +73,11 @@ const Budget_Form = () =>{
           Water
         </Label>
         <Input
-          id="examplePassword"
+          id="Water"
           name="password"
           placeholder="Water..."
-          type="password"
+          type="Water"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -56,10 +88,11 @@ const Budget_Form = () =>{
           Trash
         </Label>
         <Input
-          id="examplePassword"
+          id="Trash"
           name="password"
           placeholder="Trash..."
-          type="password"
+          type="Trash"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -67,13 +100,14 @@ const Budget_Form = () =>{
           className="me-sm-2"
           for="examplePassword"
           >
-          Natural Gas
+          Natural_Gas
         </Label>
         <Input
-          id="examplePassword"
+          id="Natural_Gas"
           name="password"
           placeholder="Natural Gas..."
-          type="password"
+          type="Natural_Gas"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -84,10 +118,11 @@ const Budget_Form = () =>{
           Electric
         </Label>
         <Input
-          id="examplePassword"
+          id="Electric"
           name="password"
           placeholder="Boogie Woogie..."
-          type="password"
+          type="Electric"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -98,10 +133,11 @@ const Budget_Form = () =>{
           Sewer
         </Label>
         <Input
-          id="examplePassword"
+          id="Sewer"
           name="password"
           placeholder="Sewer Bill..."
-          type="password"
+          type="Sewer"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -112,10 +148,11 @@ const Budget_Form = () =>{
           Fuel
         </Label>
         <Input
-          id="examplePassword"
+          id="Fuel"
           name="password"
           placeholder="Fuel (gas/diesel)..."
-          type="password"
+          type="Fuel"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -126,10 +163,11 @@ const Budget_Form = () =>{
           Entertainment 
         </Label>
         <Input
-          id="examplePassword"
+          id="Entertainment"
           name="password"
           placeholder="Entertainment..."
-          type="password"
+          type="Entertainment"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -140,10 +178,11 @@ const Budget_Form = () =>{
           Allowance 
         </Label>
         <Input
-          id="examplePassword"
+          id="Allowance"
           name="password"
           placeholder="Allowance (clothes, fun, etc)..."
-          type="password"
+          type="Allowance"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -154,10 +193,11 @@ const Budget_Form = () =>{
           Retirement
         </Label>
         <Input
-          id="examplePassword"
+          id="Retirement"
           name="password"
           placeholder="Retirement Savings..."
-          type="password"
+          type="Retirement"
+          onChange={handleChange}
         />
         </FormGroup>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -168,13 +208,15 @@ const Budget_Form = () =>{
          Savings
         </Label>
         <Input
-          id="examplePassword"
+          id="Savings"
           name="password"
           placeholder="Short Term Savings (vacation fund, boat fund, etc)..."
-          type="password"
+          type="Savings"
+          onChange={handleChange}
         />
         </FormGroup>
-        <Button color = 'danger'>
+        <Button color = 'danger'
+        onClick={handleSubmit}>
           Submit
         </Button>
       </Form>
