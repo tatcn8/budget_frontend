@@ -215,6 +215,48 @@ const Budget_Form = () =>{
           onChange={handleChange}
         />
         </FormGroup>
+        <FormGroup className="mb-2 me-sm-2 mb-sm-0">
+        <Label
+          className="me-sm-2"
+          for="examplePassword"
+          >
+         Phone
+        </Label>
+        <Input
+          id="Phone"
+          placeholder="Phone..."
+          type="Phone"
+          onChange={handleChange}
+        />
+        </FormGroup>
+        <FormGroup className="mb-2 me-sm-2 mb-sm-0">
+        <Label
+          className="me-sm-2"
+          for="examplePassword"
+          >
+         Internet
+        </Label>
+        <Input
+          id="Internet"
+          placeholder="Internet..."
+          type="Internet"
+          onChange={handleChange}
+        />
+        </FormGroup>
+        <FormGroup className="mb-2 me-sm-2 mb-sm-0">
+        <Label
+          className="me-sm-2"
+          for="examplePassword"
+          >
+         Charitable_Giving
+        </Label>
+        <Input
+          id="Charitable_Giving"
+          placeholder="Giving..."
+          type="Charitable_Giving"
+          onChange={handleChange}
+        />
+        </FormGroup>
         <Button color = 'danger'
         onClick={handleSubmit}>
           Submit
