@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Button, Col } from 'reactstrap'
+import {Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader} from 'reactstrap'
 import axios from "axios";
 
-const Budget_Form = () =>{
+const BudgetModal = () => {
     const initialState = ('')
     const [ itemState, setItemState ] = useState(initialState)
 
@@ -19,10 +19,22 @@ const Budget_Form = () =>{
         })
         window.location.reload()
     }
-
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal)
     return(
-    <>  
-        <Col xs = '4'>
+        <>
+        <Button
+color="danger"
+onClick={() => setModal(!modal)}
+>
+Click to Input Expenses
+</Button>
+<Modal
+isOpen={modal}>
+<ModalHeader toggle={toggle} >
+  Input numbers only (no dollars signs or letters)
+</ModalHeader>
+<ModalBody className='text-center'>
         <Form inline>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
           <Label
@@ -220,6 +232,20 @@ const Budget_Form = () =>{
           className="me-sm-2"
           for="examplePassword"
           >
+         College_Savings
+        </Label>
+        <Input
+          id="College_Savings"
+          placeholder="College Fund..."
+          type="College_Savings"
+          onChange={handleChange}
+        />
+        </FormGroup>
+        <FormGroup className="mb-2 me-sm-2 mb-sm-0">
+        <Label
+          className="me-sm-2"
+          for="examplePassword"
+          >
          Phone
         </Label>
         <Input
@@ -262,9 +288,10 @@ const Budget_Form = () =>{
           Submit
         </Button>
       </Form>
-      </Col>
-    </>
+</ModalBody>
+</Modal>
+        </>
     )
 }
 
-export default Budget_Form
+export default BudgetModal

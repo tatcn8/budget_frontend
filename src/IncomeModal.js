@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Button, Col } from 'reactstrap'
+import {Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader} from 'reactstrap'
 import axios from "axios";
 
-
-const Income_Form = () =>{
+const IncomeModal = () => {
     const initialState = ('')
     const [ incomeState, setIncomeState ] = useState(initialState)
 
@@ -21,11 +20,23 @@ const Income_Form = () =>{
         })
         window.location.reload()
     }
-
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal)
     return(
         <>
-        <Col xs='6'>
-        <Form>
+        <Button
+color="success"
+onClick={() => setModal(!modal)}
+>
+Click to Input Income
+</Button>
+<Modal
+isOpen={modal}>
+<ModalHeader toggle={toggle} >
+  Input numbers only (no dollars signs or letters)
+</ModalHeader>
+<ModalBody className='text-center'>
+<Form>
         <FormGroup className="mb-2 me-sm-2 mb-sm-0">
           <Label
              className="me-sm-2"
@@ -101,9 +112,10 @@ const Income_Form = () =>{
           Submit
         </Button>
       </Form>
-      </Col>
+</ModalBody>
+</Modal>
         </>
     )
 }
 
-export default Income_Form
+export default IncomeModal
